@@ -1,7 +1,7 @@
 version: "3.13"
 services:
   fastapi_backend:
-    build: ./backend
+    build: ./app
     image: fastapi-image:latest
     container_name: fastapi_app
     ports:
