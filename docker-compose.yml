@@ -19,7 +19,6 @@ services:
     volumes:
       - ollama_data:/root/.ollama
     restart: unless-stopped
-    entrypoint: /bin/sh -c "ollama pull deepseek-r1:1.5b && ollama serve"
 
 volumes:
   ollama_data:
