@@ -1,15 +1,22 @@
-version: "3.13"
 services:
-  fastapi_backend:
-    build: ./app
-    image: fastapi-image:latest
-    container_name: fastapi_app
+  llm_be:
+    build: ./llm-be
+    image: llm-be-image:latest
+    container_name: llm-be
     ports:
-      - "8000:8000"
+      - "8001:8001"
     depends_on:
       - ollama
     links:
       - ollama
+
+  llm_fe:
+    build: ./llm-fe
+    image: llm-fe-image:latest
+    container_name: llm-fe
+    network_mode: "host"
+    depends_on:
+      - llm_be
   
   ollama:
     image: ollama/ollama
@@ -19,7 +26,7 @@ services:
     volumes:
       - ollama_data:/root/.ollama
     restart: unless-stopped
-    entrypoint: /bin/sh -c "ollama pull deepseek-r1:1.5b && ollama serve"
+    # entrypoint: /bin/sh -c "ollama pull deepseek-r1:1.5b && ollama serve"
 
 volumes:
   ollama_data:
