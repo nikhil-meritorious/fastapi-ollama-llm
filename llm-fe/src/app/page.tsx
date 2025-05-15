@@ -11,7 +11,7 @@ export default function Home() {
     setMessage('');
     setLoading(true);
 
-    const response = await fetch('http://192.168.1.13:8001/generate', {
+    const response = await fetch('http://localhost:8001/generate', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
