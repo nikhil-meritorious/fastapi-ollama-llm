@@ -44,7 +44,8 @@ async def generate_text(req: GenerateRequest):
                 for line in r.iter_lines():
                     if line:
                         chunk = json.loads(line.decode("utf-8"))
-                        yield chunk["response"]
+                        if not chunk.get('error'):
+                            yield chunk["response"]
 
         return StreamingResponse(stream_response(), media_type="text/plain")
 
